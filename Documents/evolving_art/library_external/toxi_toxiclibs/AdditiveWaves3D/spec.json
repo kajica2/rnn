@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "sketch": "AdditiveWaves3D",
+  "family": "toxi_toxiclibs",
+  "title": "Additive Waves — 3D Terrain",
+  "author": "Karsten Schmidt (toxi / postspectacular.com)",
+  "year": 2009,
+  "source_url": "https://web.archive.org/web/2011/http://toxiclibs.org/2009/12/additive-waves/",
+  "description": "A 2D height-field terrain driven by the sum of multiple wave generators (sine, FBM noise, sawtooth, constant offset) defined in Karsten Schmidt's toxiclibscore wave module. Each generator contributes a sinusoidal or procedural height value z(x, y, t); the final terrain height is the sum (or weighted blend) of all contributions. Rendered as a triangle-mesh surface with optional face-shading from the local normal and a simple horizon gradient sky. The original 2009 demo was Karsten's first showcase of `toxi.math.wave.WaveSampler` for procedural terrain; the algorithm generalizes any layered-function field and shows up across the toxiclibs / thi.ng ecosystem as the canonical 'additive waves' example.",
+  "math_essence": "For each wave generator i with parameters (amplitude a_i, frequency f_i, phase φ_i, speed s_i), compute w_i(x, y, t) = a_i * sin(2π * (f_i · p + s_i * t) + φ_i) where p is (x, y) for the position dimension. The total height h(x, y, t) = Σ w_i(x, y, t) + Σ (fbm_i(x*s, y*s, t*ts) * amp_i). Triangulated as a regular grid of (N×N) vertices, two triangles per cell. Per-vertex color is a vertical gradient (deep blue at low altitude, white at peaks) modulated by a slope term (|∂h/∂x| + |∂h/∂y|) so steep faces darken. Normals are computed by cross-product of neighbouring cell edges.",
+  "evolution_type": "wave_field",
+  "render_mode": "wireframe_or_shaded_mesh_3d",
+  "parameters": [
+    {"name": "dim", "type": "int", "default": 96, "min": 32, "max": 256, "description": "Grid resolution (vertices per side)."},
+    {"name": "extent", "type": "float", "default": 6.0, "min": 1.0, "max": 20.0, "description": "World-space side length of the terrain."},
+    {"name": "wave_count", "type": "int", "default": 4, "min": 1, "max": 12, "description": "Number of additive wave generators."},
+    {"name": "noise_amp", "type": "float", "default": 0.4, "min": 0.0, "max": 2.0, "description": "Amplitude of the layered Perlin / FBM contribution."},
+    {"name": "noise_scale", "type": "float", "default": 0.6, "min": 0.1, "max": 4.0, "description": "Spatial frequency of the noise layer."},
+    {"name": "time_speed", "type": "float", "default": 0.3, "min": 0.0, "max": 4.0, "description": "Animation speed multiplier for all wave generators."},
+    {"name": "shade_mode", "type": "str", "default": "gradient", "options": ["gradient", "wireframe", "flat"], "description": "Render style: gradient-shaded surface, wireframe, or flat color."}
+  ],
+  "state_dim": 2,
+  "num_agents_default": 0,
+  "complexity": "low",
+  "tags": ["wave", "terrain", "additive", "fbm", "noise", "heightfield", "3d", "toxiclibs", "toxi", "thi-ng"],
+  "source_provenance": "toxi.math.wave.WaveSampler + a layered FBM field. Ported from the December 2009 toxiclibs post 'Additive waves' (https://web.archive.org/web/2011/http://toxiclibs.org/2009/12/additive-waves/), the original code-bundle shipped with the toxiclibscore 0011 release. The 2D-to-3D extension is the natural generalization that has since appeared in the thi.ng/wave API and in many oF / Processing terrain demos."
+}

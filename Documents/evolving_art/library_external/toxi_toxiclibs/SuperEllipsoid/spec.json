@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "sketch": "SuperEllipsoid",
+  "family": "toxi_toxiclibs",
+  "title": "Super-Ellipsoid Mesh",
+  "author": "Heinrich Piening / Karsten Schmidt (toxi / postspectacular, 2010)",
+  "year": 2010,
+  "source_url": "https://web.archive.org/web/2011/http://toxiclibs.org/2010/04/processing-paris-workshop/",
+  "description": "A super-ellipsoid is a 3D primitive that smoothly interpolates between a sphere, a box, and a pinched pillow via two shape parameters e1 (longitude exponent) and e2 (latitude exponent). The toxiclibs.geom.SuperEllipsoid class samples the implicit formula as a mesh of N×M vertices with computed face normals. Karsten used it as the headline example at the 2010 Processing Paris workshop and as the basis for the SuperShapeThread (SST) that drives his ProceduralTypography work. Generalizes: e1=e2=1 → sphere; e1, e2 large → box; e1<1, e2<1 → pinched astroid-like shape; e1=0.5, e2=1 → 'lemon'; e1=1, e2=0.5 → 'egg'. Famously appears in the original Macintosh 'S' icon (e1≈e2≈4).",
+  "math_essence": "Parametric: x(η, ω) = sign(cos(η)) * |cos(η)|^e1 * sign(cos(ω)) * |cos(ω)|^e2;  y(η, ω) = sign(cos(η)) * |cos(η)|^e1 * sign(sin(ω)) * |sin(ω)|^e2;  z(η, ω) = sign(sin(η)) * |sin(η)|^e1;  for η ∈ [-π/2, π/2] (latitude) and ω ∈ [-π, π] (longitude). Mesh resolution M (longitude steps) × N (latitude steps). Per-vertex normal from analytical derivatives of the implicit form (or numerical finite differences).",
+  "evolution_type": "geometric",
+  "render_mode": "shaded_mesh_3d",
+  "parameters": [
+    {"name": "e1", "type": "float", "default": 1.0, "min": 0.1, "max": 4.0, "description": "Longitude exponent (η-direction). Sphere=1, box=4."},
+    {"name": "e2", "type": "float", "default": 1.0, "min": 0.1, "max": 4.0, "description": "Latitude exponent (ω-direction). Sphere=1, box=4."},
+    {"name": "M", "type": "int", "default": 64, "min": 8, "max": 256, "description": "Longitude resolution."},
+    {"name": "N", "type": "int", "default": 32, "min": 4, "max": 128, "description": "Latitude resolution."},
+    {"name": "scale", "type": "float", "default": 1.0, "min": 0.1, "max": 5.0, "description": "Mesh scale."},
+    {"name": "e1_speed", "type": "float", "default": 0.5, "min": -2.0, "max": 2.0, "description": "Animation rate of e1 (e.g. for morphing)."},
+    {"name": "e2_speed", "type": "float", "default": 0.3, "min": -2.0, "max": 2.0, "description": "Animation rate of e2."},
+    {"name": "palette", "type": "str", "default": "iron", "options": ["iron", "neon", "pearl", "ocean"], "description": "Shading palette."}
+  ],
+  "state_dim": 3,
+  "num_agents_default": 0,
+  "complexity": "low",
+  "tags": ["super-ellipsoid", "implicit", "primitive", "3d", "toxiclibs", "toxi", "parametric", "mesh", "ken-ipercival"],
+  "source_provenance": "toxiclibs.geom.SuperEllipsoid (Karsten Schmidt, 2010). Originally popularised by Ken Perlin in the 1980s and used as the basis of Susan Kare's 1984 Macintosh 'S' icon. Karsten's Java class is the canonical open-source port used in oF / Processing / thi.ng workshops."
+}

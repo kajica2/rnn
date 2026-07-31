@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "sketch": "VerletPhysics3D",
+  "family": "toxi_toxiclibs",
+  "title": "Verlet Physics 3D — Mass-Spring Cloth",
+  "author": "Karsten Schmidt (toxiclibs.physics, 2008) / Thomas Jakobsen (Verlet integration, 2001)",
+  "year": 2008,
+  "source_url": "https://github.com/postspectacular/toxiclibs/tree/master/src.core/toxi/physics/verlet",
+  "description": "A 3D mass-spring system integrated with Verlet position-based dynamics and Jakobsen-style constraint relaxation. Particles carry position, previous position, mass, and a 'locked' flag. Springs are length-preserving (distance) constraints between pairs of particles; bending constraints span three-particle chains; spherical and box constraints keep particles inside (or outside) a region. Each step: integrate (x' = x + (x - x_prev) * damping + a * dt²), then relax constraints 8-16 iterations. Karsten's toxiclibs implementation is the reference Java port of the algorithm and underpins the cloth simulations, soft-body demos, and 'wobbly jelly' toys used across the openFrameworks and Processing communities. The 3D version is the natural extension of the 2D version (toxi_openframeworks/ParticleSpring2D) and demonstrates how the same Verlet abstraction generalizes to spatial simulations.",
+  "math_essence": "Verlet integration: x_new = 2·x - x_prev + a·dt². Damping: x_new = x + (1-d)·(x - x_prev) + a·dt². Constraint relaxation: for each spring with rest length L and stiffness k, move each end by ±(k/2)·(current_length - L)·normalized_direction. Bending constraints: a chain (a, b, c) gets rest_angle preservation via a perpendicular-offset projection. NaN/Infinity guard on every step. Floor plane: y >= 0 with reflection (v_new = -v_old * restitution).",
+  "evolution_type": "physics",
+  "render_mode": "spring_3d_mesh",
+  "parameters": [
+    {"name": "n_grid", "type": "int", "default": 14, "min": 4, "max": 32, "description": "Cloth grid side (n×n particles)."},
+    {"name": "size", "type": "float", "default": 4.0, "min": 1.0, "max": 10.0, "description": "Cloth side length in world units."},
+    {"name": "gravity", "type": "float", "default": 0.3, "min": 0.0, "max": 2.0, "description": "Y-axis gravity acceleration per step."},
+    {"name": "damping", "type": "float", "default": 0.98, "min": 0.5, "max": 1.0, "description": "Verlet velocity damping (1 = none)."},
+    {"name": "iterations", "type": "int", "default": 12, "min": 1, "max": 32, "description": "Constraint-relaxation iterations per step."},
+    {"name": "stiffness", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "description": "Spring stiffness (clamped 0..1 in the Jakobsen style)."},
+    {"name": "wind", "type": "float", "default": 0.0, "min": -1.0, "max": 1.0, "description": "Constant wind in +X direction."},
+    {"name": "seed", "type": "int", "default": null, "min": 0, "max": 999999, "description": "RNG seed for initial perturbation."}
+  ],
+  "state_dim": 3,
+  "num_agents_default": 196,
+  "complexity": "medium",
+  "tags": ["verlet", "physics", "cloth", "softbody", "3d", "jakobsen", "toxiclibs", "toxi", "spring", "constraints"],
+  "source_provenance": "toxiclibs.physics.VerletPhysics3D (Karsten Schmidt, c. 2008) — see https://github.com/postspectacular/toxiclibs. Algorithm: Jakobsen 2001 'Hitman' GDC paper on position-based dynamics. Pure numpy implementation here (no Java dependency)."
+}

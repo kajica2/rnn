@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "sketch": "WingedEdgeMesh",
+  "family": "toxi_toxiclibs",
+  "title": "Winged-Edge Mesh",
+  "author": "Karsten Schmidt (toxi / postspectacular, 2010)",
+  "year": 2010,
+  "source_url": "https://web.archive.org/web/2011/http://toxiclibs.org/2010/08/wingededge-mesh/",
+  "description": "A half-edge / winged-edge data structure for triangle meshes, designed for sub-million-triangle scenes where simple flat vertex/index arrays become cumbersome. Each edge stores pointers to its two endpoint vertices, its two opposite edges (the 'wings'), and the two incident faces; traversal from edge to edge is a single pointer-deref. Karsten's toxiclibs.geom.WingedEdge class was the first Java implementation aimed at creative-coding scenes and ships a `computeVertexNormals()`, `subdivide()` (Catmull-Clark style on a triangle mesh via Loop subdivision), and an adjacency-iterator used by his subdivision demo. The structure prefigures the half-edge meshes later popularised by libraries like OpenMesh and libigl, and is the canonical example of an adjacency-graph data structure for a creative-coding context.",
+  "math_essence": "For each triangle (v0, v1, v2), three directed edges e0=(v0,v1), e1=(v1,v2), e2=(v2,v0). For each edge, find the opposite edge in the adjacent triangle (if any) and link them. Vertex normals: average the cross products of the two outgoing edges of every face incident to the vertex. Subdivide: each triangle becomes 4 by inserting midpoint vertices on each edge (new vertex position = (v_a + v_b) / 2 for non-shared edges, or Loop-weighted blend for shared ones). The data structure supports O(1) vertex-to-face and face-to-edge traversal.",
+  "evolution_type": "geometric",
+  "render_mode": "subdivided_mesh_3d",
+  "parameters": [
+    {"name": "base_shape", "type": "str", "default": "icosahedron", "options": ["icosahedron", "tetrahedron", "cube", "octahedron", "dodecahedron"], "description": "Base platonic solid to start from."},
+    {"name": "subdivision_levels", "type": "int", "default": 3, "min": 0, "max": 6, "description": "Number of Loop-subdivision passes."},
+    {"name": "deform_amp", "type": "float", "default": 0.15, "min": 0.0, "max": 1.0, "description": "Per-vertex noise displacement amount."},
+    {"name": "noise_scale", "type": "float", "default": 1.5, "min": 0.1, "max": 8.0, "description": "Spatial frequency of the displacement noise."},
+    {"name": "time_speed", "type": "float", "default": 0.4, "min": 0.0, "max": 4.0, "description": "Animation rate of the displacement field."},
+    {"name": "render_mode", "type": "str", "default": "shaded", "options": ["shaded", "wireframe", "normal_color"], "description": "Shading mode for the surface."}
+  ],
+  "state_dim": 3,
+  "num_agents_default": 0,
+  "complexity": "medium",
+  "tags": ["mesh", "winged-edge", "half-edge", "subdivision", "loop", "3d", "toxiclibs", "toxi", "adjacency", "data-structure"],
+  "source_provenance": "toxiclibs.geom.WingedEdge (Karsten Schmidt, August 2010) — see https://web.archive.org/web/2011/http://toxiclibs.org/2010/08/wingededge-mesh/. Inspired by the original Baumgart 1975 'Winged-Edge Polyhedron Representation' Stanford AI memo."
+}
