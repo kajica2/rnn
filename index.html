@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evolving Art — Generative Algorithms Library</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #fff; }
+    p { color: #888; margin-bottom: 2rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 900px;
+    }
+    .card {
+      background: #13131a;
+      border: 1px solid #2a2a3a;
+      border-radius: 8px;
+      padding: 1rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: #555; }
+    .card h3 { font-size: 0.9rem; color: #fff; margin-bottom: 0.25rem; }
+    .card span { font-size: 0.75rem; color: #666; }
+    .card .family { display: block; color: #5a8; margin-top: 0.5rem; font-size: 0.7rem; }
+    footer { margin-top: 3rem; color: #444; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <h1>Evolving Art</h1>
+  <p>26 generative algorithms — strange attractors, particle systems, fractals &amp; physics</p>
+
+  <div class="grid">
+    <div class="card"><h3>Henon Phase</h3><span>6 params · low</span><span class="family">strange_attractors</span></div>
+    <div class="card"><h3>Henon Phase Deep</h3><span>10 params · medium</span><span class="family">strange_attractors</span></div>
+    <div class="card"><h3>Peter de Jong Attractor</h3><span>12 params · low</span><span class="family">strange_attractors</span></div>
+    <div class="card"><h3>Cubic Attractor</h3><span>10 params · medium</span><span class="family">strange_attractors</span></div>
+    <div class="card"><h3>Binary Ring</h3><span>7 params · low</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Sand Stroke</h3><span>8 params · low</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Sand Dollar</h3><span>5 params · high</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Sand Traveler</h3><span>9 params · medium</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Stitches</h3><span>6 params · low</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Limb Stroke</h3><span>5 params · high</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Limb Sand Stroke</h3><span>6 params · high</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Limb Strat</h3><span>5 params · high</span><span class="family">particles_paths</span></div>
+    <div class="card"><h3>Substrate Watercolor</h3><span>7 params · medium</span><span class="family">growth_aggregation</span></div>
+    <div class="card"><h3>Intersection Aggregate</h3><span>6 params · medium</span><span class="family">growth_aggregation</span></div>
+    <div class="card"><h3>Intersection Momentary</h3><span>4 params · medium</span><span class="family">growth_aggregation</span></div>
+    <div class="card"><h3>Guts (crossing knot)</h3><span>4 params · high</span><span class="family">growth_aggregation</span></div>
+    <div class="card"><h3>Box Fitting</h3><span>4 params · low</span><span class="family">growth_aggregation</span></div>
+    <div class="card"><h3>Box Fitting Img</h3><span>6 params · medium</span><span class="family">growth_aggregation</span></div>
+    <div class="card"><h3>Happy Place</h3><span>6 params · medium</span><span class="family">networks_fractals</span></div>
+    <div class="card"><h3>Node Garden</h3><span>7 params · high</span><span class="family">networks_fractals</span></div>
+    <div class="card"><h3>Offspring</h3><span>8 params · high</span><span class="family">networks_fractals</span></div>
+    <div class="card"><h3>Buddhabrot</h3><span>7 params · high</span><span class="family">networks_fractals</span></div>
+    <div class="card"><h3>Bit 10001</h3><span>8 params · high</span><span class="family">networks_fractals</span></div>
+    <div class="card"><h3>Bubble Chamber</h3><span>6 params · high</span><span class="family">physics_chamber</span></div>
+    <div class="card"><h3>Orbitals</h3><span>4 params · medium</span><span class="family">physics_chamber</span></div>
+    <div class="card"><h3>City Traveler (var A)</h3><span>7 params · medium</span><span class="family">physics_chamber</span></div>
+  </div>
+
+  <footer>6 families · 26 sketches · generative art algorithms</footer>
+</body>
+</html>
